@@ -1,0 +1,44 @@
+name: piwigo-dev
+services:
+  piwigo-dev-db:
+    image: linuxserver/mariadb
+    container_name: piwigo-dev-db 
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+    volumes:
+      - ./data/piwigo-init/piwigo-dev-db.sql:/config/initdb.d/piwigo-dev-db.sql:ro
+  piwigo-dev-app:
+    image: linuxserver/piwigo
+    container_name: piwigo-dev-app
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+    volumes:
+      - ./data/piwigo/config:/config
+      - ./data/piwigo/pictures:/pictures
+      - ./data/piwigo-init/database.inc.php:/config/www/local/config/database.inc.php
+    ports:
+      - 80:80
+    depends_on:
+      - piwigo-dev-db
+
+  piwigo-dev-phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: piwigo-dev-phpmyadmin
+    restart: unless-stopped
+    ports:
+      - 8800:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=piwigo-dev-db
+    depends_on:
+      - piwigo-dev-db
