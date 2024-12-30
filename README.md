@@ -13,6 +13,15 @@ This project depends on the Docker Engine please install prior to using followin
 #### .env
 The MariaDB database username and password is set here. If the passwords are modified here, they must be updated in `data/piwigo-init/database.inc.php`. No modification is necessary to have this work out of the box.
 
+## Running the environment
+
+Git clone the project and docker compose it!
+```
+git clone git@github.com:tkrn/piwigo-development-environment.git
+cd piwigo-development-environment.git
+docker compose up -d
+```
+
 ## Accessing the environment
 
 * Everything is bound to `localhost`. 
