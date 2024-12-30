@@ -2,7 +2,7 @@
 $conf['dblayer'] = 'mysqli';
 $conf['db_base'] = 'piwigo-dev-db';
 $conf['db_user'] = 'piwigo-dev-db';
-$conf['db_password'] = 'DEVDBPa$$w0rd';
+$conf['db_password'] = 'piwigo-dev-db';
 $conf['db_host'] = 'piwigo-dev-db';
 
 $prefixeTable = 'piwigo_';
