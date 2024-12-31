@@ -18,7 +18,7 @@ The MariaDB database username and password is set here. If the passwords are mod
 Git clone the project and docker compose it!
 ```
 git clone git@github.com:tkrn/piwigo-development-environment.git
-cd piwigo-development-environment.git
+cd piwigo-development-environment
 docker compose up -d
 ```
 
